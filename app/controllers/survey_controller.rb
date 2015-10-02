@@ -1,6 +1,6 @@
 class SurveyController < ApplicationController
   def index
-    @surveys = Survey.find_each.to_json
+    @surveys = Survey.all
   end
 
   def show

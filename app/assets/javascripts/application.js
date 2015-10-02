@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require turbolinks
 //= require d3
 //= require_tree .
@@ -35,7 +36,7 @@ $.ajax({
 function draw(data) {
 
   $.each( data, function( key, value ) {
-    alert( key + ": " + data );
+    //alert( value.comment );
   });
 
 }
@@ -79,3 +80,5 @@ function draw(data) {
 //      return d;
 //    });
 //}
+
+$(function(){ $(document).foundation(); });

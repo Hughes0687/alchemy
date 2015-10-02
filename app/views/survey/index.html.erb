@@ -1,3 +1,33 @@
+<br>
+<div class="row">
+    <h2><center>Surveys</center></h2><hr>
+</div>
+
+
+<div class="row">
+  <h5 class="large-2 columns">User ID:</h5>
+  <h5 class="large-2 columns">Score:</h5>
+  <h5 class="large-4 columns">Most Important Reason For Score:</h5>
+  <h5 class="large-4 columns">Survey Comment:</h5>
+  <br>
+  <hr>
+</div>
+<% @surveys.each do |survey| %>
+  <div class="row">
+    <div class="large-2 columns"><%= survey.user_id %></div>
+    <div class="large-2 columns"><b><%= survey.question_one %></b>/10</div>
+    <div class="large-4 columns"><%= survey.question_2_value %></div>
+    <div class="large-4 columns"><%= survey.comment %></div>
+    <br>
+    <hr>
+  </div>
+
+<% end %>
+
+
+
+
+
 <%= javascript_tag do %>
   window.surveys = <%= raw @surveys.to_json %>
 <% end %>

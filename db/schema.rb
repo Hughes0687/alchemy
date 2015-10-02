@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002165829) do
+ActiveRecord::Schema.define(version: 20151002212246) do
 
   create_table "acceptable_position_type_selections", force: :cascade do |t|
     t.string   "selector_type",                           limit: 255
@@ -7763,19 +7763,17 @@ ActiveRecord::Schema.define(version: 20151002165829) do
 
   add_index "supplemental_answers", ["completed_application_id"], name: "ix_completed_application_id", using: :btree
 
-  create_table "surveys", force: :cascade do |t|
-    t.integer "user_id",      limit: 4,   null: false
-    t.integer "question_one", limit: 4
-    t.integer "question_two", limit: 4
-    t.string  "comment",      limit: 500
+  create_table "survey", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4,   null: false
+    t.integer  "question_one", limit: 4
+    t.integer  "question_two", limit: 4
+    t.string   "comment",      limit: 500
+    t.string   "user_name",    limit: 255
+    t.integer  "employer_id",  limit: 4
+    t.datetime "created_at"
   end
 
-  add_index "surveys", ["user_id"], name: "user_id", using: :btree
-
-  create_table "survies", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "survey", ["user_id"], name: "user_id", using: :btree
 
   create_table "system_event_email_templates", force: :cascade do |t|
     t.integer  "employer_email_template_id", limit: 4
@@ -9487,5 +9485,5 @@ ActiveRecord::Schema.define(version: 20151002165829) do
 
   add_index "working_conditions", ["position_context_id"], name: "position_context", using: :btree
 
-  add_foreign_key "surveys", "Users", column: "user_id", name: "surveys_ibfk_1"
+  add_foreign_key "survey", "Users", column: "user_id", name: "survey_ibfk_1"
 end

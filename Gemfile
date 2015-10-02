@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'responders'
+gem 'foundation-rails'
 gem 'mysql2', '~> 0.3.18'
 gem 'd3js-rails', '~> 3.1.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
