@@ -1,7 +1,5 @@
 class SurveyController < ApplicationController
-
   def index
-    @a = Survey.first
+    @surveys = Survey.find_each
   end
-
 end
