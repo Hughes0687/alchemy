@@ -17,4 +17,15 @@ class Survey < ActiveRecord::Base
         return 'Product Bugs and Stability'
     end
   end
+
+  def employer
+    case self.employer_id
+      when 685
+        return 'Stephen University'
+      when 1554
+        return 'Harvard University'
+      when 1470
+        return 'Alexandria Community College'
+    end
+  end
 end

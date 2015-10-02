@@ -4,20 +4,24 @@
 </div>
 
 
-<div class="row">
-  <h5 class="large-2 columns">User ID:</h5>
-  <h5 class="large-2 columns">Score:</h5>
+<div class="row"><center>
+  <h5 class="large-1 columns">User:</h5>
+  <h5 class="large-1 columns">Score:</h5>
+  <h5 class="large-1 columns">Employer:</h5>
   <h5 class="large-4 columns">Most Important Reason For Score:</h5>
-  <h5 class="large-4 columns">Survey Comment:</h5>
+  <h5 class="large-3 columns">Survey Comment:</h5>
+  <h5 class="large-2 columns">Date:</h5></center>
   <br>
   <hr>
 </div>
 <% @surveys.each do |survey| %>
-  <div class="row">
-    <div class="large-2 columns"><%= survey.user_id %></div>
-    <div class="large-2 columns"><b><%= survey.question_one %></b>/10</div>
+  <div class="row"><center>
+    <div class="large-1 columns"><%= survey.user_name %></div>
+    <div class="large-1 columns"><b><%= survey.question_one %></b>/10</div>
+    <div class="large-1 columns"><%= survey.employer %></div>
     <div class="large-4 columns"><%= survey.question_2_value %></div>
-    <div class="large-4 columns"><%= survey.comment %></div>
+    <div class="large-3 columns"><%= survey.comment %></div>
+    <div class="large-2 columns"><%= survey.created_at.to_date %></div></center>
     <br>
     <hr>
   </div>
