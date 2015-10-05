@@ -58,3 +58,7 @@
 <div class="row">
   <div id="svgg" class="large-12 large-centered columns"></div>
 </div>
+
+<%= javascript_tag do %>
+  window.product = <%= raw Product.limit(75).order('size desc').to_json %>
+<% end %>

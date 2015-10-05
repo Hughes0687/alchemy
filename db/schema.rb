@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005194206) do
+ActiveRecord::Schema.define(version: 20151005210450) do
 
   create_table "acceptable_position_type_selections", force: :cascade do |t|
     t.string   "selector_type",                           limit: 255
@@ -7127,11 +7127,11 @@ ActiveRecord::Schema.define(version: 20151005194206) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "account_name", limit: 255
-    t.integer  "total_fees",   limit: 4
-    t.integer  "healthscore",  limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "name",        limit: 255
+    t.integer  "size",        limit: 4
+    t.integer  "healthscore", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "profile_computer_software_skill_selections", force: :cascade do |t|

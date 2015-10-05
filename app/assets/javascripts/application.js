@@ -33,6 +33,7 @@ $.ajax({
   }
 });
 
+var health = window.product;
 
 function array(data) {
   window.array = [];
@@ -61,7 +62,6 @@ function draw(data) {
     });
 }
 
-
 $( "#showbar" ).click(function() {
   $( "#showbar" ).hide();
   $( "#hiddenbar" ).show();
@@ -78,54 +78,70 @@ $( "#hidebar" ).click(function() {
 
 var thing = {
   "name": "flare",
-  "children": [
-    {
-      "name": "analytics",
-      "children": [
-        {
-          "name": "cluster",
-          "children": [
-            {"name": "Harvard", "size": 10000},
-            {"name": "Stevo's School", "size": 3812},
-            {"name": "Another School", "size": 6714},
-            {"name": "Yeaaaa", "size": 743}
-          ]
-        },
-      ]
-    },
-  ]
+  "children": health
 };
 
 var diameter = 960,
-  format = d3.format(",d");
+  format = d3.format(",d"),
+  color = d3.scale.category20c();
 
-var pack = d3.layout.pack()
-  .size([diameter - 4, diameter - 4])
-  .value(function(d) { return d.size; });
+var bubble = d3.layout.pack()
+  .sort(null)
+  .size([diameter, diameter])
+  .padding(1.5);
 
 var svg = d3.select("#svgg").append("svg")
   .attr("width", diameter)
   .attr("height", diameter)
-  .append("g")
-  .attr("transform", "translate(2,2)");
+  .attr("class", "bubble");
 
 root = thing;
-  var node = svg.datum(root).selectAll(".node")
-    .data(pack.nodes)
+
+  var node = svg.selectAll(".node")
+    .data(bubble.nodes(classes(root))
+      .filter(function(d) { return !d.children; }))
     .enter().append("g")
-    .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
+    .attr("class", "node")
     .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
   node.append("title")
-    .text(function(d) { return d.name + (d.children ? "" : ": " + format(d.size)); });
+    .text(function(d) { return d.className + ": $" + format(d.value); });
 
   node.append("circle")
-    .attr("r", function(d) { return d.r; });
+    .attr("r", function(d) { return d.r; })
+    .attr("class", function(d) { return d.health })
+    .style("fill", function(d) { return color(d.packageName); });
 
-  node.filter(function(d) { return !d.children; }).append("text")
+  node.append("text")
     .attr("dy", ".3em")
     .style("text-anchor", "middle")
-    .text(function(d) { return d.name.substring(0, d.r / 3); });
+    .text(function(d) { return d.className.substring(0, d.r / 3); });
 
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(name, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+    else classes.push({packageName: name, className: node.name, value: node.size, health: node.healthscore});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
 
 d3.select(self.frameElement).style("height", diameter + "px");
+
+//
+for (i = -15; i < 101; i++) {
+  $("." + i).css( "fill", "rgb(0,255,0)" );
+}
+
+for (i = -15; i < 50; i++) {
+  $("." + i).css( "fill", "rgb(255,255,0)" );
+
+}
+
+for (i = -15; i < 20; i++) {
+  $("." + i).css( "fill", "rgb(255,0,0)" );
+}

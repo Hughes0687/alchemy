@@ -1,3 +1,9 @@
+<%= form_tag import_products_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Products</h1>
@@ -15,8 +21,8 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.account_name %></td>
-        <td><%= product.total_fees %></td>
+        <td><%= product.name %></td>
+        <td><%= product.size %></td>
         <td><%= product.healthscore %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
