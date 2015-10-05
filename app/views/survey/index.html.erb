@@ -3,7 +3,7 @@
     <h2><center>Surveys</center></h2><hr>
 </div>
 
-
+<div id="mainsurveys">
 <div class="row"><center>
   <h5 class="large-1 columns">User:</h5>
   <h5 class="large-1 columns">Score:</h5>
@@ -25,15 +25,36 @@
     <br>
     <hr>
   </div>
-
 <% end %>
+</div>
 
+<div class="row">
+  <div class="large-3 large-centered columns">
+    <a id="showbar" class="button">Show Bar Graph</a>
+  </div>
+</div>
 
+<div class="row hidden" id="hiddenbar">
+  <div class="large-1 columns">
+    Stephen<br>
+    Laney<br>
+    Alex<br>
+    Peter<br>
+    Bill<br>
+    CB<br>
+    Parker<br>
+    Katie<br>
+  </div>
+  <div class="chart large-11 columns"></div>
+</div>
 
+<div id="hidebar" class="row hidden">
+  <div class="large-3 large-centered columns">
+    <br>
+    <a class="button">Hide Bar Graph</a>
+  </div>
+</div>
 
-
-<%= javascript_tag do %>
-  window.surveys = <%= raw @surveys.to_json %>
-<% end %>
-
-<svg id="graph"></svg>
+<div class="row">
+  <div id="svgg" class="large-12 large-centered columns"></div>
+</div>

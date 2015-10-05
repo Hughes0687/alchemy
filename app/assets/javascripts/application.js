@@ -24,7 +24,8 @@ $.ajax({
   url: 'survey/data',
   dataType: 'json',
   success: function (data) {
-    draw(data);
+    array(data);
+    console.log(data);
     window.data = data;
   },
   error: function (result) {
@@ -33,52 +34,98 @@ $.ajax({
 });
 
 
-function draw(data) {
-
+function array(data) {
+  window.array = [];
   $.each( data, function( key, value ) {
-    //alert( value.comment );
+    window.array.push(value.question_one);
+    //alert( value.question_one );
   });
-
+  draw(window.array)
 }
 
-//function draw(data) {
-//
-//  var color = d3.scale.category20b();
-//  var width = 420,
-//    barHeight = 20;
-//
-//  var x = d3.scale.linear()
-//    .range([0, width])
-//    .domain([0, d3.max(data)]);
-//
-//  var chart = d3.select("#graph")
-//    .attr("width", width)
-//    .attr("height", barHeight * data.length);
-//
-//  var bar = chart.selectAll("g")
-//    .data(data)
-//    .enter().append("g")
-//    .attr("transform", function (d, i) {
-//      return "translate(0," + i * barHeight + ")";
-//    });
-//
-//  bar.append("rect")
-//    .attr("width", x)
-//    .attr("height", barHeight - 1)
-//    .style("fill", function (d) {
-//      return color(d)
-//    });
-//
-//  bar.append("text")
-//    .attr("x", function (d) {
-//      return x(d) - 10;
-//    })
-//    .attr("y", barHeight / 2)
-//    .attr("dy", ".35em")
-//    .style("fill", "white")
-//    .text(function (d) {
-//      return d;
-//    });
-//}
+function draw(data) {
 
-$(function(){ $(document).foundation(); });
+  var x = d3.scale.linear()
+    .domain([0, 5])
+    .range([0, 420]);
+
+  d3.select(".chart")
+    .selectAll("div")
+    .data(data)
+    .enter().append("div")
+    .style("width", function (d) {
+      return x(d) + "px";
+    })
+    .text(function (d) {
+      return d;
+    });
+}
+
+
+$( "#showbar" ).click(function() {
+  $( "#showbar" ).hide();
+  $( "#hiddenbar" ).show();
+  $( "#hidebar" ).show();
+  $("#mainsurveys").hide();
+});
+
+$( "#hidebar" ).click(function() {
+  $( "#hidebar" ).hide();
+  $( "#hiddenbar" ).hide();
+  $( "#showbar" ).show();
+  $("#mainsurveys").show();
+});
+
+var thing = {
+  "name": "flare",
+  "children": [
+    {
+      "name": "analytics",
+      "children": [
+        {
+          "name": "cluster",
+          "children": [
+            {"name": "Harvard", "size": 10000},
+            {"name": "Stevo's School", "size": 3812},
+            {"name": "Another School", "size": 6714},
+            {"name": "Yeaaaa", "size": 743}
+          ]
+        },
+      ]
+    },
+  ]
+};
+
+var diameter = 960,
+  format = d3.format(",d");
+
+var pack = d3.layout.pack()
+  .size([diameter - 4, diameter - 4])
+  .value(function(d) { return d.size; });
+
+var svg = d3.select("#svgg").append("svg")
+  .attr("width", diameter)
+  .attr("height", diameter)
+  .append("g")
+  .attr("transform", "translate(2,2)");
+
+root = thing;
+  var node = svg.datum(root).selectAll(".node")
+    .data(pack.nodes)
+    .enter().append("g")
+    .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
+    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+  node.append("title")
+    .text(function(d) { return d.name + (d.children ? "" : ": " + format(d.size)); });
+
+  node.append("circle")
+    .attr("r", function(d) { return d.r; });
+
+  node.filter(function(d) { return !d.children; }).append("text")
+    .attr("dy", ".3em")
+    .style("text-anchor", "middle")
+    .text(function(d) { return d.name.substring(0, d.r / 3); });
+
+
+d3.select(self.frameElement).style("height", diameter + "px");

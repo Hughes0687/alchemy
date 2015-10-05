@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Account name:</strong>
+  <%= @product.account_name %>
+</p>
+
+<p>
+  <strong>Total fees:</strong>
+  <%= @product.total_fees %>
+</p>
+
+<p>
+  <strong>Healthscore:</strong>
+  <%= @product.healthscore %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
