@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_name: MyString
+  total_fees: 1
+  healthscore: 1
+
+two:
+  account_name: MyString
+  total_fees: 1
+  healthscore: 1

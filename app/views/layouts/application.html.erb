@@ -9,6 +9,13 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+  <h2>Import Products</h2>
+
+  <%= form_tag import_products_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
+
     <%= yield %>
     <%= javascript_include_tag "application" %>
   </body>
