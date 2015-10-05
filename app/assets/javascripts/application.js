@@ -59,9 +59,19 @@ function draw(data) {
     .text(function (d) {
       return d;
     });
-
-
-  $(function () {
-    $(document).foundation();
-  });
 }
+
+
+$( "#showbar" ).click(function() {
+  $( "#showbar" ).hide();
+  $( "#hiddenbar" ).show();
+  $( "#hidebar" ).show();
+  $("#mainsurveys").hide();
+});
+
+$( "#hidebar" ).click(function() {
+  $( "#hidebar" ).hide();
+  $( "#hiddenbar" ).hide();
+  $( "#showbar" ).show();
+  $("#mainsurveys").show();
+});
