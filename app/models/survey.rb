@@ -1,5 +1,5 @@
 class Survey < ActiveRecord::Base
-  self.table_name = "survey"
+  self.table_name = "surveys"
 
   def question_2_value
     case self.question_two
