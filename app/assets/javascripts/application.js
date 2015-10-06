@@ -77,6 +77,19 @@ $( "#hidebar" ).click(function() {
   $("#mainsurveys").show();
 });
 
+$( "#showbubbles" ).click(function() {
+  $(this).hide();
+  $("#svgg").show();
+  $("#hidebubbles").show();
+});
+
+$( "#hidebubbles" ).click(function() {
+  $(this).hide();
+  $("#svgg").hide();
+  $("#showbubbles").show();
+  window.scrollTo(0,0);
+});
+
 var thing = {
   "name": "flare",
   "children": health

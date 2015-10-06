@@ -51,3 +51,8 @@ text {
 .names {
   font: 23px sans-serif;
 }
+
+table{
+  width: 100%;
+  border: 0;
+}

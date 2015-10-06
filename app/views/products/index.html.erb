@@ -1,26 +1,54 @@
 <br>
 <div class="row">
   <h2><center>Customer Health</center></h2><hr>
+
+<div id="showbubbles">
+  <center>
+  <div class="small-3 small-centered columns">
+    <br>
+    <a class="button">Show Health Graph</a>
+  </div>
+  </center>
 </div>
 
-<div class="row">
-  <div id="svgg" class="large-12 large-centered columns"></div>
+<div class="row ">
+  <div id="svgg" class="large-12 large-centered columns hidden"></div>
 </div>
 
-<%= javascript_tag do %>
+
+<div id="hidebubbles" class="hidden">
+  <div class="large-3 large-centered columns">
+    <br>
+    <a class="button">Hide Health Graph</a>
+  </div>
+</div>
+
+  <hr>
+
+
+  <%= javascript_tag do %>
   window.product = <%= raw Product.limit(75).order('size desc').to_json %>
 <% end %>
 
 
-<%= form_tag import_products_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
-
-
-<p id="notice"><%= notice %></p>
-
 <div class="row">
+  <div class="large-12 large-centered columns">
+    <h3><center>
+      Import Client Health Data
+    </center>
+    </h3>
+  </div>
+  <div class="small-3 small-centered columns">
+  <%= form_tag import_products_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
+  </div>
+</div>
+  <hr>
+
+
+  <div class="row">
 <h1><center>Client List</center></h1>
 
 <table>
@@ -49,6 +77,5 @@
 
 <br>
 
-<%#= link_to 'New Product', new_product_path %>
-
+</div>
 </div>
