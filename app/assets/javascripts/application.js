@@ -67,6 +67,7 @@ $( "#showbar" ).click(function() {
   $( "#hiddenbar" ).show();
   $( "#hidebar" ).show();
   $("#mainsurveys").hide();
+  window.scrollTo(0,0);
 });
 
 $( "#hidebar" ).click(function() {

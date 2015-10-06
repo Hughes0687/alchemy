@@ -25,7 +25,7 @@
   background-color: steelblue;
   text-align: right;
   padding: 5px;
-  margin: 2px;
+  margin: 4px;
   color: white;
 }
 
@@ -46,4 +46,8 @@ circle {
 
 text {
   font: 10px sans-serif;
+}
+
+.names {
+  font: 23px sans-serif;
 }
