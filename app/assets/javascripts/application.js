@@ -124,6 +124,7 @@ root = thing;
   node.append("circle")
     .attr("r", function(d) { return d.r; })
     .attr("class", function(d) { return d.health })
+    .attr("id", function(d) { return d.id })
     .style("fill", function(d) { return color(d.packageName); });
 
   node.append("text")
@@ -131,31 +132,55 @@ root = thing;
     .style("text-anchor", "middle")
     .text(function(d) { return d.className.substring(0, d.r / 3); });
 
-// Returns a flattened hierarchy containing all leaf nodes under the root.
+d3.select(self.frameElement).style("height", 1000 + "px");
+
+//
+for (i = -100; i < 101; i++) {
+  $("." + i).css( "fill", "rgb(0,255,0)" );
+}
+
+for (i = -100; i < 50; i++) {
+  $("." + i).css( "fill", "rgb(255,255,0)" );
+
+}
+
+for (i = -100; i < 20; i++) {
+  $("." + i).css( "fill", "rgb(255,0,0)" );
+}
+
+$( "g" ).click(function() {
+  window.scrollTo(0,0);
+  var nodeid = $(this).children('circle')[0].id;
+  window.location='http://localhost:3000/products/' + nodeid;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function classes(root) {
   var classes = [];
 
   function recurse(name, node) {
     if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
-    else classes.push({packageName: name, className: node.name, value: node.size, health: node.healthscore});
+    else classes.push({packageName: name, className: node.name, value: node.size, health: node.healthscore, id: node.id});
   }
 
   recurse(null, root);
   return {children: classes};
-}
-
-d3.select(self.frameElement).style("height", diameter + "px");
-
-//
-for (i = -15; i < 101; i++) {
-  $("." + i).css( "fill", "rgb(0,255,0)" );
-}
-
-for (i = -15; i < 50; i++) {
-  $("." + i).css( "fill", "rgb(255,255,0)" );
-
-}
-
-for (i = -15; i < 20; i++) {
-  $("." + i).css( "fill", "rgb(255,0,0)" );
 }
