@@ -27,8 +27,9 @@
 
 
   <%= javascript_tag do %>
-  window.product = <%= raw Product.limit(75).order('size desc').to_json %>
   window.product = <%= raw Product.limit(1000).order("RAND()").to_json %>
+    window.product = <%= raw Product.limit(7500).order('size desc').to_json %>
+
 <% end %>
 
 
