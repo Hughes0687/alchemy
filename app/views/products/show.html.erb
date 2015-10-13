@@ -1,19 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Client Name:</strong>
-  <%= @product.name %>
-</p>
+<div class="row">
 
+  <div class="small-6 small-centered columns"><center>
+<h3>
+  <strong><%= @product.name %></strong>
+</h3><hr>
 <p>
   <strong>Total Fees:</strong>
-  <%= @product.size %>
+  $<%= @product.size %>
 </p>
 
 <p>
   <strong>Healthscore:</strong>
   <%= @product.healthscore %>
-</p>
+</p></center>
+    <div class="large-12 columns">
+      <label>
+        <textarea id="comments" placeholder="Customer Comments"></textarea>
+      </label><br>
+      <center><a href="#" class="button small">Add Comment</a></center>
+    </div>
+    <hr>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<center><%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %></center>
+</div>
+
+
+</div>
+
+
+<%= javascript_tag do %>
+  window.product = <%= raw Product.limit(1000).order("RAND()").to_json %>
+  window.product = <%= raw Product.limit(7500).order('size desc').to_json %>
+  $("#surveys").removeClass('active');
+  $("#health").addClass('active');
+<% end %>

@@ -1960,6 +1960,9 @@ meta.foundation-mq-topbar {
     .top-bar-section ul li.active > a {
       background: #008CBA;
       color: #FFFFFF; }
+    .top-bar-section ul li.inactive > a {
+      background: #a02800;
+      color: #FFFFFF; }
       .top-bar-section ul li.active > a:hover {
         background: #0078a0;
         color: #FFFFFF; }

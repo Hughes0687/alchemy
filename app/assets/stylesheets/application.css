@@ -56,3 +56,13 @@ table{
   width: 100%;
   border: 0;
 }
+
+
+.top-bar-section li:not(.has-form) a:not(.button) li:is(.inactive) {
+  background: #a02800;
+  color: #FFFFFF; }
+
+
+#comments {
+  height: 120px;
+}

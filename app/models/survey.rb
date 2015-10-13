@@ -4,7 +4,7 @@ class Survey < ActiveRecord::Base
   def question_2_value
     case self.question_two
       when 1
-        return 'Completeness of Featutes'
+        return 'Completeness of Features'
       when 2
         return 'Ease of Use'
       when 3
@@ -20,12 +20,16 @@ class Survey < ActiveRecord::Base
 
   def employer
     case self.employer_id
-      when 685
-        return 'Stephen University'
-      when 1554
+      when 1
+        return 'Auburn University'
+      when 2
         return 'Harvard University'
-      when 1470
-        return 'Alexandria Community College'
+      when 3
+        return 'Colgate University'
+      when 4
+        return 'Hogwarts'
+      when 5
+        return 'Lamar University'
     end
   end
 end
