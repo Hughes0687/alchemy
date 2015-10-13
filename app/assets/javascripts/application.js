@@ -157,25 +157,6 @@ $( "g" ).click(function() {
   window.location='http://localhost:3000/products/' + nodeid;
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function classes(root) {
   var classes = [];
 

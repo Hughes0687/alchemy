@@ -7771,7 +7771,7 @@ ActiveRecord::Schema.define(version: 20151005210450) do
 
   add_index "supplemental_answers", ["completed_application_id"], name: "ix_completed_application_id", using: :btree
 
-  create_table "survey", force: :cascade do |t|
+  create_table "surveys", force: :cascade do |t|
     t.integer  "user_id",      limit: 4,   null: false
     t.integer  "question_one", limit: 4
     t.integer  "question_two", limit: 4
@@ -7781,7 +7781,7 @@ ActiveRecord::Schema.define(version: 20151005210450) do
     t.datetime "created_at"
   end
 
-  add_index "survey", ["user_id"], name: "user_id", using: :btree
+  add_index "surveys", ["user_id"], name: "user_id", using: :btree
 
   create_table "system_event_email_templates", force: :cascade do |t|
     t.integer  "employer_email_template_id", limit: 4
@@ -9493,5 +9493,5 @@ ActiveRecord::Schema.define(version: 20151005210450) do
 
   add_index "working_conditions", ["position_context_id"], name: "position_context", using: :btree
 
-  add_foreign_key "survey", "Users", column: "user_id", name: "survey_ibfk_1"
+  add_foreign_key "surveys", "Users", column: "user_id", name: "surveys_ibfk_1"
 end
