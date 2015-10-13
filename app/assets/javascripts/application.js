@@ -25,7 +25,6 @@ $.ajax({
   dataType: 'json',
   success: function (data) {
     array(data);
-    console.log(data);
     window.data = data;
   },
   error: function (result) {
