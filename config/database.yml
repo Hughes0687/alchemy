@@ -6,12 +6,12 @@ development: &development
   host: localhost
   pool: 10
   reconnect: true
-  database: hrsuite_1554_development
+  database: hrsuite_1470_development
 
 test: &test
   adapter: mysql2
   encoding: utf8
-  database: hrsuite_1554_development
+  database: hrsuite_1470_development
   username: root
   password:
   host: localhost
@@ -20,7 +20,7 @@ test: &test
 production: &production
   adapter: mysql2
   encoding: utf8
-  database: hrsuite_1554_development
+  database: hrsuite_1470_development
   username: pa
   password:
   host: localhost
